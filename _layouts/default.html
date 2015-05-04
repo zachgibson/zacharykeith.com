@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+
+  <!-- DNS prefetching for third-party resources -->
+  <link rel="dns-prefetch" href="//www.google-analytics.com">
+  <link rel="dns-prefetch" href="//ajax.googleapis.com">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{ site.title }} | {% if current.home? %}{{ site.meta.tagline }}{% else %}{{ title }}{% endif %}</title>
+  <meta name="description" content="{{ site.meta.description }}">
+  <link rel="alternate" type="application/rss+xml" href="{{ site.feed_url }}" />
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon-precomposed.png" />
+
+  <!-- Open Graph and Twitter Cards meta tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="{{ site.meta['Twitter handle'] }}">
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:url" content="{{ permalink }}">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="">
+  <meta property="og:description" content="">
+
+  <link rel="stylesheet" href="/_assets/css/mstr.css">
+
+  <!-- Typekit -->
+  {% include 'includes/typekit' %}
+
+  <!-- Custom colors -->
+  {% include 'includes/meta-color' %}
+</head>
+
+<body>
+
+  <div class="spinner" id="spinner" style="background-color: {{ meta.color | fallback: site.meta.color }};"></div>
+
+  <div class="hide" id="hide">
+    <a class="logo" href="/">
+      <ul>
+            <li class="initial">z</li>
+        <li class="non-initial">a</li>
+        <li class="non-initial">c</li>
+        <li class="non-initial">h</li>
+        <li class="non-initial">a</li>
+        <li class="non-initial">r</li>
+        <li class="non-initial">y</li>
+        <li class="non-initial">k</li>
+        <li class="non-initial">e</li>
+        <li class="non-initial">i</li>
+        <li class="non-initial">t</li>
+        <li class="non-initial">h</li>
+      </ul>
+    </a>
+
+    <div class="nav-wrapper">
+      <a class="burger-icon"><span class="burger-line"></span></a>
+      <div class="nav-circle-bg"></div>
+      <nav class="main-nav">
+        <ul>
+          {% for page in site.pages %}
+            {% unless page.home? %}
+            <li><a href="{{ page.url }}" {% if page.url == url %} class="selected" {% endif %}>{{ page.title }}</a></li>
+            {% endunless %}
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+
+    {% if meta.hero-image-left %}
+      <section class="hero">
+        <img class="hero-image-left" src="{{ meta.hero-image-left }}" alt="">
+      </section>
+    {% elsif meta.hero-image-right %}
+      <section class="hero">
+        <img class="hero-image-right" src="{{ meta.hero-image-right }}" alt="">
+      </section>
+    {% endif %}
+
+    <main class="main-content">
+      {{ content }}
+    </main>
+
+    {% include 'includes/pagination' %}
+
+      <footer class="main-footer">
+        <section class="footer-first-section">
+          <div class="footer-first-section-padding">
+            <h4>{{ site.meta.footer-first-title }}</h4>
+            <p>{{ site.meta.footer-first-paragraph }}</p>
+            <p class="small"><em>{{ site.meta.footer-first-paragraph-contact }}</em></p>
+          </div>
+        </section>
+        <div class="vertical-divider"></div>
+        <section class="footer-second-section">
+          <div class="footer-second-section-padding">
+            <h4>{{ site.meta.footer-second-title }}</h4>
+            <p>{{ site.meta.footer-second-paragraph }}</p>
+          </div>
+        </section>
+      </footer>
+
+      <footer class="copyright-footer">
+        <p class="small">&copy; {{ site.date | date: '%Y' }} Zachary Keith. All rights reserved.</p>
+      </footer>
+
+  </div>
+
+  <script src="/_assets/js/master.min.js"></script>
+  <script>
+    document.onreadystatechange = function () {
+      var state = document.readyState
+      if (state == 'complete') {
+        document.getElementById('hide').style.opacity="1";
+        document.getElementById('spinner').style.display="none";
+      }
+    }
+  </script>
+</body>
+</html>

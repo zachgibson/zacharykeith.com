@@ -1,0 +1,22 @@
+<style>
+  #spinner { background-color: {{ meta.color | fallback: site.meta.color }}; }
+  ::selection {
+    background-color: {{ meta.color | fallback: site.meta.color }};
+    color: #fff;
+  }
+
+  .nav-circle-bg { background-color: {{ meta.color | fallback: site.meta.color }}; }
+
+  a { color: {{ meta.color | fallback: site.meta.color }}; }
+
+  .fancy-typography-character { color: {{ meta.color | fallback: site.meta.color }}; }
+
+  .chevron { fill: {{ meta.color | fallback: site.meta.color }}; }
+
+  .tag:hover { border-color: {{ meta.color | fallback: site.meta.color }}; }
+
+  .about-portrait:after { border: solid 3px {{ meta.color | fallback: site.meta.color }}; }
+
+  blockquote p { color: {{ meta.color | fallback: site.meta.color }}; }
+
+</style>

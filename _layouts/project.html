@@ -1,0 +1,13 @@
+{% capture content %}
+  <article class="main-article">
+    <div class="content-body project-image">
+      <header {% if meta.hero-image-left %} class="hero-text-right" {% elsif meta.hero-image-right %} class="hero-text-left" {% endif %}>
+        <h1>{{ current.title }}</h1>
+        <p><strong>My services</strong>: {{ meta.services }}</p>
+      </header>
+      {{ current.body }}
+    </div>
+  </article>
+{% endcapture %}
+
+{% include 'layouts/default' %}

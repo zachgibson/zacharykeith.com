@@ -1,0 +1,863 @@
+@import 'compass';
+@import 'susy';
+@import 'breakpoint';
+@import 'compass/reset';
+
+$align-both: translate(-50%, -50%);
+$align-vertical: translateY(-50%);
+$align-horizontal: translateX(-50%);
+$spacing: 0.75rem;
+
+$base-font-size: 21px;
+$base-line-height: 31.5px;
+@include establish-baseline;
+
+$title: "freight-display-pro",serif;
+$text: "freight-text-pro",serif;
+
+$h1: 2.369em;
+$h2: 1.777em;
+$h3: 1.333em;
+$h4: 1em;
+
+$darkgray: #222;
+$mediumgray: #999;
+$lightgray: #eee;
+
+$default-ease: all 200ms ease-in-out;
+$nav-ease: all 400ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+$burger-icon-ease: all 400ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
+
+$baby-bear: 750px;
+$mama-bear: 1242px;
+$papa-bear: 2304px;
+
+html {
+  box-sizing: border-box;
+  font-family: $text;
+  text-rendering: optimizeLegibility;
+  -webkit-font-kerning: normal;
+     -moz-font-kerning: normal;
+      -ms-font-kerning: normal;
+       -o-font-kerning: normal;
+          font-kerning: normal;
+  -webkit-font-feature-settings: "liga","kern";
+     -moz-font-feature-settings: "liga","kern";
+      -ms-font-feature-settings: "liga","kern";
+       -o-font-feature-settings: "liga","kern";
+          font-feature-settings: "liga","kern";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $darkgray;
+  background-color: #fff;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  @media(max-width: $baby-bear) {
+    font-size: 110%;
+  }
+}
+
+/*
+ * Loading Animation
+ */
+
+/* Pulsing Circle Animation */
+
+.spinner {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: 2.369rem;
+  height: 2.369rem;
+  margin-top: -1.1845rem;
+  margin-left: -1.1845rem;
+  border-radius: 100%;
+  @include animation(scaleout 1.0s infinite ease-in-out);
+}
+
+@-webkit-keyframes scaleout {
+  0% { -webkit-transform: scale(0.0) }
+  100% {
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+@keyframes scaleout {
+  0% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 100% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+/* Hide all content until page is loaded */
+
+.hide {
+  opacity: 0;
+  @include transition($default-ease);
+}
+
+/*
+ * Grid
+ */
+
+$susy: (
+  columns: 12,
+  guttters: 1/4
+);
+
+/*
+ * Typography
+ */
+
+/* Headings */
+
+h1, h2, h3, h4 {
+  font-family: $title;
+}
+
+h1 {
+  padding-top: rhythm(1, 49.74px);
+  margin-bottom: rhythm(1, 49.74px);
+  @include adjust-font-size-to($h1);
+}
+
+h2 {
+  padding-top: rhythm(1, 37.315px);
+  margin-bottom: rhythm(1, 37.315px);
+  @include adjust-font-size-to($h2);
+}
+
+h3 {
+  padding-top: rhythm(1, 27.993px);
+  margin-bottom: rhythm(1, 27.993px);
+  @include adjust-font-size-to($h3);
+}
+
+h4 {
+  padding-top: rhythm(1, 21px);
+  margin-bottom: rhythm(1, 21px);
+  @include adjust-font-size-to($h4);
+}
+
+/* Paragraph */
+
+p {
+  @include trailer();
+  a {
+    border-bottom: solid 3px #fff;
+    &:hover {
+      border-bottom: solid 3px #eee;
+    }
+  }
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+/* Small Text */
+
+.small,
+small,
+figcaption {
+  @include rhythm-margins(0.75);
+  @include adjust-font-size-to(0.75em);
+}
+
+/* Anchor Link */
+
+a {
+  text-decoration: none;
+  @include transition($default-ease);
+}
+
+/* Blockquote */
+
+blockquote p {
+  font-size: $h3;
+  font-style: italic;
+  line-height: 1.25em;
+  &:before {
+    content: "“";
+    position: relative;
+    display: inline-block;
+    width: 0px;
+    left: -0.5em;
+  }
+  &:after {
+    content: "”";
+  }
+}
+
+@include breakpoint($baby-bear) {
+  blockquote p {
+    width: 120%;
+    margin-left: -10%;
+  }
+}
+
+/* Figure Caption */
+
+figcaption {
+  font-family: $title;
+  color: $lightgray;
+  p {
+    margin: 0;
+  }
+}
+
+/* Horizontal Reference */
+
+hr {
+  width: 8.380952381em;
+  height: 3px;
+  @include rhythm-margins();
+  background-color: $lightgray;
+  border: none;
+}
+
+/*
+ * Animated Zachary Keith Logo
+ */
+
+.logo {
+  position: absolute;
+  z-index: 1;
+  top: 1.125rem;
+  left: 3%;
+  font-family: $title;
+  font-size: $h1;
+  color: $darkgray;
+  li {
+    float: left;
+    margin-left: -1px;
+    line-height: 1;
+    &:nth-child(2) {
+      @include transition-delay(0ms);
+    }
+    &:nth-child(3) {
+      @include transition-delay(20ms);
+    }
+    &:nth-child(4) {
+      @include transition-delay(40ms);
+    }
+    &:nth-child(5) {
+      @include transition-delay(60ms);
+    }
+    &:nth-child(6) {
+      @include transition-delay(80ms);
+    }
+    &:nth-child(7) {
+      @include transition-delay(100ms);
+    }
+    &:nth-child(8) {
+      @include transition-delay(120ms);
+    }
+    &:nth-child(9) {
+      @include transition-delay(140ms);
+    }
+    &:nth-child(10) {
+      @include transition-delay(160ms);
+    }
+    &:nth-child(11) {
+      @include transition-delay(180ms);
+    }
+    &:nth-child(12) {
+      @include transition-delay(200ms);
+    }
+  }
+  &:hover {
+    .non-initial {
+      margin-top: 0;
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+.non-initial {
+  margin-top: -2rem;
+  visibility: hidden;
+  opacity: 0;
+  @include transition($nav-ease);
+}
+
+@include breakpoint($baby-bear) {
+  .logo {
+    position: fixed;
+  }
+}
+
+/*
+ * Expanding Navigation Menu
+ */
+
+/* Navigation container (hides the excess expanding circle to form a rectangular block) */
+
+.nav-wrapper {
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  padding-top: 1.125rem;
+  visibility: hidden;
+}
+
+@include breakpoint($mama-bear) {
+  .nav-wrapper {
+    width: 36%;
+  }
+}
+
+/* Internal site navigation links */
+
+.main-nav {
+  position: relative;
+  z-index: 4;
+  padding: 0 2.369rem;
+  visibility: hidden;
+  opacity: 0;
+  @include transition(all 100ms ease-in-out);
+  @include transition-delay(0ms);
+  li {
+    font-family: $title;
+    @include adjust-font-size-to($h1);
+  }
+  a {
+    color: #fff;
+  }
+}
+
+/* Active class for the current page to help user know where they currently are */
+
+.selected {
+  text-decoration: line-through;
+}
+
+/* Fades in the navigation links */
+
+.show {
+  visibility: visible;
+  opacity: 1;
+  @include transition-delay(80ms);
+}
+
+/* The icon that users click or touch to open the navigation menu */
+
+.burger-icon {
+  z-index: 5;
+  cursor: pointer;
+}
+
+/* The hamburger menu button */
+
+.burger-icon,
+.nav-circle-bg {
+  position: absolute;
+  right: 6%;
+  display: block;
+  width: 2.885rem;
+  height: 2.865rem;
+  visibility: visible;
+}
+
+@include breakpoint($baby-bear) {
+  .burger-icon,
+  .nav-circle-bg {
+    width: 2.369rem;
+    height: 2.369rem;
+  }
+}
+
+@include breakpoint($mama-bear) {
+  .burger-icon,
+  .nav-circle-bg {
+    right: 8.3333333334%;
+  }
+}
+
+.nav-circle-bg {
+  top: 1.125rem;
+  z-index: 3;
+  border-radius: 100%;
+  @include transition(all 300ms cubic-bezier(0.000, 0.995, 0.990, 1.000));
+}
+
+/* The animation that expands the circle behind the hamburger lines to become the navigation menu background */
+
+.expand {
+  width: 83rem;
+  height: 83rem;
+  top: -41.5rem;
+  right: -41.5rem;
+  @include transition($nav-ease);
+}
+
+@include breakpoint($baby-bear) {
+  .expand {
+    width: 120rem;
+    height: 120rem;
+    top: -60rem;
+    right: -60rem;
+  }
+}
+
+@include breakpoint($mama-bear) {
+  .expand {
+    width: 90rem;
+    height: 90rem;
+    top: -45rem;
+    right: -45rem;
+  }
+}
+
+@include breakpoint($papa-bear) {
+  .expand {
+    width: 82rem;
+    height: 82rem;
+    top: -41rem;
+    right: -41rem;
+  }
+}
+
+/* Three lines that form the “hamburger” menu */
+
+.burger-line {
+  position: absolute;
+  z-index: 6;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 58%;
+  height: 3px;
+  margin-left: -29%;
+  font-size: 0px;
+  background-color: #fff;
+  @include transition($burger-icon-ease);
+  &:before,
+  &:after {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    content: '';
+    @include transition($burger-icon-ease);
+  }
+}
+
+.burger-line:before {
+  @include transform(translateY(-8px));
+}
+
+.burger-line:after {
+  @include transform(translateY(8px));
+}
+
+/* The animation that transitions the hamburger lines to become an x */
+
+.rotate {
+  background: rgba(255,255,255,0);
+  @include transform(rotate(-180deg));
+  @include transition($burger-icon-ease);
+  &:before {
+    @include transform(translateY(0) rotate(-45deg));
+  }
+  &:after {
+    @include transform(translateY(0) rotate(45deg));
+  }
+}
+
+/*
+ * Hero Header Content
+ */
+
+.hero-text-left,
+.hero-text-right {
+  margin-bottom: 1.5em;
+}
+
+@include breakpoint($mama-bear) {
+  .hero {
+    .hero-image-left {
+      width: 60%;
+      margin-right: auto;
+    }
+    .hero-image-right {
+      width: 60%;
+      margin-left: auto;
+    }
+  }
+  .hero-text-left,
+  .hero-text-right {
+    position: absolute;
+    top: 10rem;
+    max-width: 34%;
+    padding: 0 3%;
+    margin: 0 auto;
+    h1 {
+      margin-bottom: 0;
+    }
+  }
+  .hero-text-left {
+    left: 0;
+  }
+  .hero-text-right {
+    right: 0;
+    text-align: right;
+  }
+}
+
+/* Fancy Typographic Headings */
+
+.fancy-typography-title {
+  display: block;
+  text-align: center;
+}
+
+.fancy-typography-title-wrapper {
+  position: relative;
+}
+
+.fancy-typography-word {
+  position: relative;
+  z-index: 2;
+}
+
+.fancy-typography-character {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  font-size: 5.61em;
+  @include transform($align-both);
+}
+
+@include breakpoint($mama-bear) {
+  .fancy-typography-title {
+    position: absolute;
+    top: 10rem;
+    @include adjust-font-size-to(4.209em);
+    text-align: left;
+  }
+  .fancy-typography-character {
+    left: auto;
+    @include transform($align-vertical);
+  }
+}
+
+/*
+ * Main Content
+ */
+
+.main-content {
+  padding: 0 6%;
+  margin: 4.619rem auto;
+}
+
+.content-body {
+  max-width: 28.571428571em;
+  margin-left: auto;
+  margin-right: auto;
+  ol {
+    list-style-type: decimal;
+    padding-left: 1.5em;
+    @include trailer();
+    ul {
+      list-style-type: circle;
+    }
+  }
+  ul {
+    list-style-type: disc;
+    padding-left: 1.5em;
+    @include trailer();
+    ul {
+      list-style-type: circle;
+    }
+  }
+}
+
+@include breakpoint($baby-bear) {
+  .main-content {
+    padding: 0 3%;
+  }
+  .content-body {
+    img {
+      max-width: 120%;
+      margin-left: -10%;
+    }
+    ol {
+      padding-left: 0;
+    }
+    ul {
+      padding-left: 0;
+    }
+  }
+}
+
+/*
+ * Footer
+ */
+
+.main-footer {
+  position: relative;
+  clear: both;
+  @include clearfix();
+  padding: 0 6%;
+  margin: 0 auto;
+  border-top: solid 2px $lightgray;
+  border-bottom: solid 2px $lightgray;
+  p {
+    font-size: 0.75em;
+    line-height: 1.5em;
+  }
+  .vertical-divider {
+    display: none;
+  }
+}
+
+@media(max-width: 750px) {
+  .footer-first-section,
+  .footer-second-section {
+    padding: 1.5em 0;
+  }
+}
+
+.copyright-footer {
+  font-family: $title;
+  text-align: center;
+}
+
+@include breakpoint($baby-bear) {
+  .main-footer {
+    padding: 0 3%;
+    .vertical-divider {
+      position: absolute;
+      display: block;
+      width: 2px;
+      height: 100%;
+      background-color: $lightgray;
+      left: 50%;
+      @include transform($align-horizontal);
+    }
+  }
+  .footer-first-section {
+    @include box-sizing(border-box);
+    float: left;
+    width: 50%;
+  }
+  .footer-second-section {
+    float: right;
+    width: 50%;
+  }
+  .footer-first-section-padding {
+    padding: 3.0476190476em 9% 3.0476190476em 3%;
+  }
+
+  .footer-second-section-padding {
+    padding: 3.0476190476em 9%;
+  }
+}
+
+/*
+ * Rando Styling
+ */
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+.img-bleed {
+  width: 133%;
+  margin-left: -16.5%;
+}
+
+.align-left {
+  float: left;
+  width: 50%;
+  margin-left: -25%;
+  margin-right: 1.5rem;
+}
+
+.align-right {
+  float: right;
+  width: 50%;
+  margin-right: -25%;
+  margin-left: 1.5rem;
+}
+
+/*
+ * Projects Page
+ */
+
+/* Grid Settings */
+
+.project {
+  position: relative;
+  margin-bottom: gutter(12);
+}
+
+@include breakpoint($baby-bear) {
+  .projects {
+    @include clearfix();
+  }
+  .project {
+    @include gallery(6 of 12);
+  }
+}
+
+/* Overlay for each project containing title and subtitle */
+
+.overlay {
+  display: none;
+}
+
+@include breakpoint($baby-bear) {
+  .project-link:hover {
+    .overlay-wrapper {
+      opacity: 1;
+    }
+  }
+  .overlay-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    @include transition(opacity 200ms);
+  }
+  .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 10.5714285714em;
+    height: 10.5714285714em;
+    margin-top: -5.2857142857em;
+    margin-left: -5.2857142857em;
+    text-align: center;
+    background-color: #fff;
+  }
+  .overlay-title-wrapper {
+    width: 10.5714285714em;
+    height: 10.5714285714em;
+    display: table;
+  }
+  .project-overlay-title {
+    vertical-align: middle;
+    display: table-cell;
+    padding: 0;
+    margin: 0;
+    font-family: $title;
+  }
+}
+
+/*
+ * Individual Project Page
+ */
+
+@include breakpoint($baby-bear) {
+  .project-image {
+    img {
+      max-width: 180%;
+      margin-left: -40%;
+    }
+  }
+}
+
+/*
+ * Blog
+ */
+
+/* Blog Archive */
+
+.article-archive h2 {
+  margin-bottom: 0;
+}
+
+@include breakpoint($baby-bear) {
+  .article-archive h2 {
+    padding-top: 0;
+  }
+  .article-side-image {
+    @include span(2.777);
+  }
+}
+
+/* Blog Post */
+
+
+
+/* Pagination Buttons */
+
+.pagination {
+  @include clearfix();
+  padding: 6%;
+  p {
+    display: none;
+  }
+  svg {
+    width: 33.333%;
+  }
+}
+
+.next {
+  float: right;
+  width: 38%;
+  text-align: right;
+}
+
+.previous {
+  float: left;
+  width: 38%;
+}
+
+@include breakpoint($baby-bear) {
+  .pagination {
+    position: relative;
+    padding: 3%;
+    @include transition($default-ease);
+    svg {
+      width: auto;
+      fill: $mediumgray;
+    }
+    p {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: block;
+      margin: 0;
+      font-family: $title;
+      font-size: $h2;
+      @include transform($align-both);
+      @include transition($default-ease);
+    }
+    &:hover {
+      background-color: #eee;
+    }
+  }
+  .next {
+    width: 44%;
+  }
+  .previous {
+    width: 44%;
+  }
+}
+
+.chevron {
+  @include transition($default-ease);
+}

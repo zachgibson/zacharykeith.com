@@ -1,0 +1,20 @@
+{% capture content %}
+  <ul class="projects">
+    {% for work in pages %}
+      <li class="project">
+        <a class="project-link" href="{{ work.url }}">
+          <img src="{{ work.assets.first.url }}" alt="meta.alt">
+            <div class="overlay-wrapper">
+              <div class="overlay">
+                <div class="overlay-title-wrapper">
+                  <h4 class="project-overlay-title" style="color: {{ site.meta.color }}">{{ work.title }}</h4>
+                </div>
+              </div>
+            </div>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endcapture %}
+
+{% include 'layouts/default' %}

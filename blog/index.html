@@ -1,0 +1,23 @@
+{% capture content %}
+  {% for post in posts limit:6 %}
+    <main class="main-content">
+      <article class="article-archive">
+        {% if post.meta.thumb-image %}
+          <a href="{{ post.url }}">
+            <img class="article-side-image" src="{{ post.meta.thumb-image }}" alt="meta.alt">
+          </a>
+        {% endif %}
+        <div class="content-body">
+          <header>
+            <h2>{{ post.title }}</h2>
+            <time class="content-date">{{ post.date | date: '%B %d, %Y' }}</time>
+          </header>
+            <p>{{ post.body | truncatewords: 40 }}</p>
+            <p><a href="{{ post.url }}">Read more {% include 'includes/arrow' %}</a></p>
+        </div>
+      </article>
+    </main>
+  {% endfor %}
+{% endcapture %}
+
+{% include 'layouts/default' %}

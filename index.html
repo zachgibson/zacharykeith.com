@@ -1,0 +1,17 @@
+{% capture content %}
+<section class="hero">
+  <img class="hero-image-right" src="{{ meta.hero-image }}" alt="">
+  <h1 class="hero-text-left fancy-typography-title">
+    <div class="fancy-typography-title-wrapper">
+      <span class="fancy-typography-word">{{ meta.fancy-typography-title }}</span>
+      <span class="fancy-typography-character">{{ meta.fancy-typography-character }}</span>
+    </div>
+  </h1>
+</section>
+<main class="main-content">
+  <div class="content-body">
+    {{ body }}
+  </div>
+</main>
+{% endcapture %}
+{% include 'layouts/default' %}

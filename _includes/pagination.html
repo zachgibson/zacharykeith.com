@@ -1,0 +1,46 @@
+{% if current.parent and (current.previous or current.next) %}
+  {% if current.next %}
+    <a href="{{ current.next.url }}">
+      <div class="pagination next">
+        <p>next</p>
+        <svg width="102" height="102" viewBox="0 0 102 102" xmlns="http://www.w3.org/2000/svg">
+          <title>
+            Right chevron icon
+          </title>
+          <g class="chevron" fill-rule="evenodd">
+            <path d="M51 1C23.386 1 1 23.386 1 51s22.386 50 50 50 50-22.386 50-50S78.614 1 51 1zm0 3C25.043 4 4 25.043 4 51s21.043 47 47 47 47-21.043 47-47S76.957 4 51 4z"/>
+            <path d="M63.006 49.885l-19.44-19.44c-.593-.593-1.54-.59-2.127-.006-.59.59-.584 1.538.005 2.127L60.178 51.3 42.152 69.323c-.594.594-.592 1.542-.006 2.128.59.59 1.538.583 2.127-.006L64.42 51.3l-1.414-1.415z"/>
+          </g>
+        </svg>
+      </div>
+    </a>
+  {% endif %}
+
+  {% if current.previous %}
+    <a href="{{ current.previous.url }}">
+      <div class="pagination previous">
+        <p>prev</p>
+        <svg width="102" height="102" viewBox="0 0 102 102" xmlns="http://www.w3.org/2000/svg">
+          <title>
+            Left chevron icon
+          </title>
+          <g class="chevron" fill-rule="evenodd">
+            <path d="M51 1C23.386 1 1 23.386 1 51s22.386 50 50 50 50-22.386 50-50S78.614 1 51 1zm0 3C25.043 4 4 25.043 4 51s21.043 47 47 47 47-21.043 47-47S76.957 4 51 4z"/>
+            <path d="M38.414 52.005l19.44 19.44c.593.593 1.54.59 2.127.006.59-.59.584-1.538-.005-2.127L41.242 50.59l18.026-18.024c.594-.594.592-1.542.006-2.128-.59-.59-1.538-.583-2.127.006L37 50.59l1.414 1.415z"/>
+          </g>
+        </svg>
+      </div>
+    </a>
+  {% endif %}
+
+  <script>
+    document.body.onkeyup = function(e){
+      {% if current.previous %}
+      if (e.keyCode == '37') { window.location = "{{ current.previous.url }}"; }
+      {% endif %}
+      {% if current.next %}
+      if (e.keyCode == '39') { window.location = "{{ current.next.url }}"; }
+      {% endif %}
+    };
+  </script>
+{% endif %}
